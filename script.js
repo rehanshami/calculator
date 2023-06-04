@@ -48,9 +48,5 @@ function operate (op, num1, num2) {
             break;    
 
     }
-    
-    
-    if (op=="+") {
-        return add(num1,num2);
-    }
 }
+
