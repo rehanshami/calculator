@@ -1,13 +1,70 @@
+
 body {
     margin: 0;
     padding: 0;
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    background: linear-gradient(to right, #00AAFF, #00FF6c);
+    font-family: Gotham, sans-serif;
 }
 
 .calculator {
-   width: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    min-height: 100vh;
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto; 
+
+}
+
+.rows {
+    display: flex; 
+}
+
+.buttons {
+    box-sizing: border-box;
+    width: 100%;
+}
+
+button {
+    flex: 1;
+    padding: 10px 20px;
+    font-size: 2rem;
+    cursor: pointer;
+    outline: none;
+    border: 1px solid white;
+    background-color: rgba(255, 255, 255, .75);
+}
+
+.zero-btn {
+    flex-grow: 2;
+}
+
+button:hover {
+    background-color: rgba(255, 255, 255, .95);
+}
+
+.display {
+    box-sizing: border-box;
+    min-height: 80px;
+    width: 100%;
+    background-color: rgba(0, 0, 0, .75);
+    border: 1px solid red;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+    flex-direction: column;
+    padding: 20px;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+.display .previous-value {
+    color: rgba(255, 255, 255, .75);
+    font-size: 1.75rem;
+}
+.display .current-value {
+    color: white;
+    font-size: 2.5rem;
 }

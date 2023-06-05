@@ -25,8 +25,8 @@ function divide(num1, num2) {
     return num1 / num2;
 }
 
-let number1;
-let number2;
+let number1 = "";
+let number2 = "";
 let operator = "";
 
 function operate (op, num1, num2) {
@@ -50,3 +50,19 @@ function operate (op, num1, num2) {
     }
 }
 
+// Get the numbers
+const numberButtons = document.querySelectorAll(".number");
+const operatorButtons = document.querySelectorAll(".operator");
+const equalsButton = document.querySelector(".equals");
+const previousOperand = document.querySelector(".previous-value");
+const currentOperand = document.querySelector(".current-value");
+const clearButton = document.querySelector(".clear");
+
+// Add event listeners to number buttons
+
+  
+  // Add event listener to operator buttons
+  
+  
+  // Add event listener to equals button
+  
