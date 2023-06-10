@@ -22,12 +22,17 @@ function multiply(num1, num2) {
 }
 
 function divide(num1, num2) {
+    if (num2 === 0) {
+        console.log("Number2=" + num2)
+        return "ERROR";
+      }
     return num1 / num2;
 }
 
 let number1 = "";
 let number2 = "";
 let operator = "";
+let result = "";
 
 function operate (op, num1, num2) {
     switch(op) {
@@ -57,12 +62,128 @@ const equalsButton = document.querySelector(".equals");
 const previousOperand = document.querySelector(".previous-value");
 const currentOperand = document.querySelector(".current-value");
 const clearButton = document.querySelector(".clear");
+const decimalButton = document.querySelector(".decimal");
+const backspaceButton = document.querySelector(".backspace");
+const negativeButton = document.querySelector(".negative");
 
 // Add event listeners to number buttons
+numberButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+        
+        if (!operator) {
+            currentOperand.textContent += button.textContent;
+            number1 = parseFloat(currentOperand.textContent);
+        }
+        
+        else {
+            currentOperand.textContent += button.textContent;
+            number2 = parseFloat(currentOperand.textContent);
+         }  
+        
+        console.log("this is number1:" + number1)
+        console.log("this is number2:" + number2)
+    })
 
+})
+
+
+// Add event listener to operator buttons
+operatorButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+
+      if (operator === '/' && number2 === 0) {
+            currentOperand.textContent = 'ERROR';
+            return;
+          }
+
+      if (number1 && number2 && operator) {
+        result = operate(operator, number1, number2);
+        currentOperand.textContent = result;
+        number1 = result;
+      }
   
-  // Add event listener to operator buttons
+      operator = button.textContent;
+  
+      if (!number2) {
+        number2 = parseFloat(currentOperand.textContent);
+      }
+  
+      previousOperand.textContent = currentOperand.textContent + operator;
+      currentOperand.textContent = "";
+    });
+  });
   
   
-  // Add event listener to equals button
+// Add event listener to equals button
+equalsButton.addEventListener("click", () => {
+
+  if (operator === '/' && number2 === 0) {
+        currentOperand.textContent = 'ERROR';
+        return;
+    }
+
+  if (number1 && number2 && operator) {
+        currentOperand.textContent = "";
+        result = operate(operator, number1, number2);
+        currentOperand.textContent += result;
+        previousOperand.textContent = "";
+        number1 = result;
+        number2 = "";
+        operator = "";
+  }
+})
+
+clearButton.addEventListener("click", () => {
+    number1 = "";
+    number2 = "";
+    operator = "";
+    previousOperand.textContent = "";
+    currentOperand.textContent = "";
+})
+
+decimalButton.addEventListener("click", () => {
+    
+    if (!currentOperand.textContent.includes(".")) {
+    currentOperand.textContent+=".";
+
+    }
+})
+
+backspaceButton.addEventListener("click", () => {
+  currentOperand.textContent = currentOperand.textContent.slice(0, -1);
+  if (!operator) {
+    number1 = parseFloat(currentOperand.textContent);
+}
+
+else {
+    number2 = parseFloat(currentOperand.textContent);
+ }  
+})
+
+negativeButton.addEventListener("click", () => {
+  if (!currentOperand.textContent.includes("-")) {
+    currentOperand.textContent = "-" + currentOperand.textContent;
+    if (!operator) {
+      number1 = parseFloat(currentOperand.textContent);
+    }
   
+    else {
+      number2 = parseFloat(currentOperand.textContent);
+    }  
+    
+  }
+  else {
+    currentOperand.textContent = currentOperand.textContent.replace("-", "");
+    if (!operator) {
+      number1 = parseFloat(currentOperand.textContent);
+    }
+  
+    else {
+      number2 = parseFloat(currentOperand.textContent);
+    }  
+    
+  }
+
+
+
+})
